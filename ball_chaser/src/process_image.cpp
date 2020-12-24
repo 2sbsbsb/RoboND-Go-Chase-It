@@ -1,3 +1,7 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+using namespace std;
 
 #include "ros/ros.h"
 #include "ball_chaser/DriveToTarget.h"
