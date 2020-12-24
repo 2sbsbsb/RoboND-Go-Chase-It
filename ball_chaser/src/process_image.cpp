@@ -1,8 +1,3 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
-using namespace std;
-
 #include "ros/ros.h"
 #include "ball_chaser/DriveToTarget.h"
 #include <sensor_msgs/Image.h>
@@ -30,40 +25,57 @@ void process_image_callback(const sensor_msgs::Image img)
 
     int white_pixel = 255;
 
+    bool found_ball = false;
     // TODO: Loop through each pixel in the image and check if there's a bright white one
-    for (int i = 0; i < img.height * img.step; i += 3) {
-        int position_index = i % (img.width * 3) / 3;
-	
-        if (img.data[i] == white_pixel && img.data[i + 1] == white_pixel && img.data[i + 2] == white_pixel) {
-            if(position_index <= 265) {
-		left_counter += 1;                
-            }
-            if(position_index > 265 && position_index <= 533) {
-		front_counter += 1;               
-            }
-            if(position_index > 533) {
-		right_counter += 1;                
+    int row = 0;
+    int step = 0;
+    int i = 0;
+    
+    ROS_INFO("height: %d, width: %d, step: %d", img.height, img.width, img.step);
+    ROS_INFO("HEIGHT: %f, STEP: %f", img.height, img.step);
+    for (row = 0; row < img.height && found_ball == false; row++)
+    {
+        for (step = 0; step < img.step && found_ball == false; ++step)
+        {   
+            i = (row*img.step)+step;
+            ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
+            if (img.data[i] == white_pixel)
+            {   
+                found_ball = true;
+                ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
+                
             }
 		}
     }
 
-    // Then, identify if this pixel falls in the left, mid, or right side of the image
-    vector<int> position_counter{left_counter, front_counter, right_counter};
-    int where_to_move = *max_element(position_counter.begin(), position_counter.end());
-
-    // Depending on the white ball position, call the drive_bot function and pass velocities to it
-    // Request a stop when there's no white ball seen by the camera
-    if (where_to_move == 0){
-        drive_robot(0.0, 0.0); // This request brings my_robot to a complete stop
+    if (found_ball)
+    {
+        // Then, identify if this pixel falls in the left, mid, or right side of the image
+        int imgThird = img.width/3;
+        int col = step/3;
+        ROS_INFO("col: %d", col);
+        if (col < imgThird) 
+        {
+            drive_robot(0.1, 0.1);
+            ROS_INFO("LEFT");
+        } 
+        else if (col >= imgThird && col < 2*imgThird)
+        {
+            drive_robot(0.5, 0.0);
+            ROS_INFO("MID");
+        }
+        else if (col >= 2*imgThird)
+        {
+            drive_robot(0.1, -0.1);
+            ROS_INFO("RIGHT");
+        }
+        // Depending on the white ball position, call the drive_bot function and pass velocities to it
     }
-    else if (where_to_move == left_counter) {
-	drive_robot(0.0, -0.5);  // This request should drive my_robot left
-    }
-    else if (where_to_move == front_counter) {
-        drive_robot(0.5, 0.0);  // This request drives my_robot robot forward
-    }
-    else if (where_to_move == right_counter) {
-        drive_robot(0.0, 0.5); // This request drives my_robot right
+  	else 
+    {
+            // Request a stop when there's no white ball seen by the camera
+        drive_robot(0.0, 0.0);
+        ROS_INFO("STOP");
     }
 }
 
