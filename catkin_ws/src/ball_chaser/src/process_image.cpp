@@ -38,42 +38,42 @@ void process_image_callback(const sensor_msgs::Image img)
         for (step = 0; step < img.step && found_ball == false; ++step)
         {   
             i = (row*img.step)+step;
-            ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
+            // ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
             if (img.data[i] == white_pixel)
             {   
                 found_ball = true;
-                ROS_INFO("row: %d, step: %d, i: %d", row, step, i);
+                // ROS_INFO("Found row: %d, step: %d, i: %d", row, step, i);
                 
             }
 		}
     }
 
-    if (found_ball)
+    if (found_ball == true)
     {
-        // Then, identify if this pixel falls in the left, mid, or right side of the image
+        // Identify if this pixel falls in the left, mid, or right side of the image
         int imgThird = img.width/3;
         int col = step/3;
-        ROS_INFO("col: %d", col);
+        //ROS_INFO("col: %d", col);
         if (col < imgThird) 
         {
             drive_robot(0.1, 0.1);
-            ROS_INFO("LEFT");
+            ROS_INFO("Left <");
         } 
         else if (col >= imgThird && col < 2*imgThird)
         {
             drive_robot(0.5, 0.0);
-            ROS_INFO("MID");
+            ROS_INFO("Middle ^");
         }
         else if (col >= 2*imgThird)
         {
             drive_robot(0.1, -0.1);
-            ROS_INFO("RIGHT");
+            ROS_INFO("Right >");
         }
         // Depending on the white ball position, call the drive_bot function and pass velocities to it
     }
   	else 
     {
-            // Request a stop when there's no white ball seen by the camera
+        // Request a stop when there's no white ball seen by the camera
         drive_robot(0.0, 0.0);
         ROS_INFO("STOP");
     }
