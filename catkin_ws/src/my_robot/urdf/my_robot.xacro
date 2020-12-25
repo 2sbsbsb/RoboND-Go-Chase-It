@@ -19,7 +19,7 @@
     <pose>0 0 0.1 0 0 0</pose>
     
     <inertial>
-      <mass value="15"/>
+      <mass value="15.0"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <inertia 
           ixx="0.08425" ixy="0" ixz="0"
@@ -27,6 +27,15 @@
           izz="0.390625"  
       />
     </inertial>
+
+
+    <collision name='collision'>
+      <origin xyz="0 0 0" rpy=" 0 0 0"/> 
+      <geometry>
+        <box size=".4 .2 .1"/>
+      </geometry>
+    </collision>
+
     
     <collision name="chassis_collision">
       <geometry>
@@ -40,6 +49,22 @@
         <box size="0.5 0.25 0.07"/>
       </geometry>
     </visual>
+
+    <!--back caster-->
+    <collision name='back_caster_collision'>
+      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.0499"/>
+      </geometry>
+    </collision>
+
+    <visual name='back_caster_visual'>
+      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
+      <geometry>
+        <sphere radius="0.05"/>
+      </geometry>
+    </visual>
+
     
     <!--front caster-->
     <collision name="front_caster_collision">
