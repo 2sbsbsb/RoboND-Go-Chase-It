@@ -15,6 +15,18 @@ It is designed and configured with the Unified Robot Description format. The rob
  - [Lidar hokuyo](http://gazebosim.org/tutorials?tut=ros_gzplugins#GPULaser)
  - [camera](http://gazebosim.org/tutorials?tut=ros_gzplugins#Camera)
  
+ 
+ A white color is added to the Gazebo world which can be moved around and the robot will follow when it is its view. 
+ 
+ To launch the my_robot 
+ # roslaunch my_robot world.launch 
+ 
+ 
+ 
+ #### ball_chaser 
+ 
+ # roslaunch ball_chaser ball_chaser.launch 
+ 
 
 #### Directory Structure
 ```
