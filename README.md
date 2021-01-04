@@ -18,14 +18,25 @@ It is designed and configured with the Unified Robot Description format. The rob
  
  A white color is added to the Gazebo world which can be moved around and the robot will follow when it is its view. 
  
- To launch the my_robot 
- # roslaunch my_robot world.launch 
+ To launch the my_robot from catkin_ws root dir 
+ 
+ ```sh
+$ catkin_make
+$ source devel/setup.bash 
+$ roslaunch my_robot world.launch
+```
  
  
  
  #### ball_chaser 
+
+```sh
+$ catkin_make
+$ source devel/setup.bash 
+$ roslaunch ball_chaser ball_chaser.launch 
+```
+
  
- # roslaunch ball_chaser ball_chaser.launch 
  
 
 #### Directory Structure
