@@ -27,9 +27,12 @@ $ source devel/setup.bash
 $ roslaunch my_robot world.launch
 ```
  
- 
+
  
  #### ball_chaser 
+ 
+ The ball_chaser ROS package has two C++ nodes. A drive_bot that will provide a ball_chaser/command_robot service to drive tthe robot by controlling its linear and angular velocities. The 2nd node is process_image and as the name suggests it reads the camera images and analyzes it to determine the presence and position of the white ball. It the while ball exists the node request a service via client to drive the robot towards it. 
+ 
 
  ###### To launch the my_robot from catkin_ws
 ```sh
