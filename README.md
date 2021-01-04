@@ -1,3 +1,13 @@
+## RoboND-Go-Chase-It
+
+
+This project is to build a ball chaser mobile robot with ROS. The project is divided into two major tasks.
+
+* my_robot  - Design the robot and put into the world build here (https://github.com/2sbsbsb/RoboND-BuildMyWorld)
+* ball_chaser - Chase the white colored ball using the robot
+
+
+### Directory Structure
 ```
 ~/RoboND-Go-Chase-It/catkin_ws/src$ tree
 .
@@ -32,3 +42,8 @@
 
 11 directories, 17 files
 ```
+
+
+
+
+
