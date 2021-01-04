@@ -18,7 +18,8 @@ It is designed and configured with the Unified Robot Description format. The rob
  
  A white color is added to the Gazebo world which can be moved around and the robot will follow when it is its view. 
  
- To launch the my_robot from catkin_ws root dir 
+ 
+ ###### To launch the my_robot from catkin_ws
  
  ```sh
 $ catkin_make
@@ -30,6 +31,7 @@ $ roslaunch my_robot world.launch
  
  #### ball_chaser 
 
+ ###### To launch the my_robot from catkin_ws
 ```sh
 $ catkin_make
 $ source devel/setup.bash 
@@ -81,7 +83,7 @@ $ roslaunch ball_chaser ball_chaser.launch
 ![rqt_graph](https://github.com/2sbsbsb/RoboND-Go-Chase-It/blob/main/rqt_graph.png?raw=true)
 
 
-#### Demonstation 
+#### Video Demonstation 
 [<img src="https://i9.ytimg.com/vi/Ry_-DpFcquo/mq2.jpg?sqp=CJTlzf8F&rs=AOn4CLCsKvv-QaU3_yegSqabMT5oPeY_Qg" width="50%">](https://youtu.be/Ry_-DpFcquo>)
 
 
