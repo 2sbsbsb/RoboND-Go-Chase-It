@@ -7,7 +7,16 @@ This project is to build a ball chaser mobile robot with ROS. The project is div
 * ball_chaser - Chase the white colored ball using the robot
 
 
-### Directory Structure
+#### my_robot 
+
+The my_robot ROS package has a robot, white ball and the world built here (https://github.com/2sbsbsb/RoboND-BuildMyWorld). 
+It is designed and configured with the Unified Robot Description format. The robot perceives the surrounding by two sensors a camera and a lidar. 
+
+ - [Lidar hokuyo](http://gazebosim.org/tutorials?tut=ros_gzplugins#GPULaser)
+ - [camera](http://gazebosim.org/tutorials?tut=ros_gzplugins#Camera)
+ 
+
+#### Directory Structure
 ```
 ~/RoboND-Go-Chase-It/catkin_ws/src$ tree
 .
